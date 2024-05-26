@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Rectangles with Descriptions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="description-box" id="descriptionBox"></div>
+    <div class="container">
+        <div class="rectangle" data-description="Description for number 1">1</div>
+        <div class="rectangle" data-description="Description for number 2">2</div>
+        <div class="rectangle" data-description="Description for number 3">3</div>
+        <div class="rectangle" data-description="Description for number 4">4</div>
+        <div class="rectangle" data-description="Description for number 5">5</div>
+    </div>
+    <div class="link">
+        https://www.youtube.com/watch?v=12345
+    </div>
+
+    <script>
+        const rectangles = document.querySelectorAll('.rectangle');
+        const descriptionBox = document.getElementById('descriptionBox');
+
+        rectangles.forEach(rectangle => {
+            rectangle.addEventListener('mouseover', (event) => {
+                const description = event.target.getAttribute('data-description');
+                descriptionBox.textContent = description;
+                descriptionBox.style.opacity = '1';
+                descriptionBox.style.transform = 'translateY(0)';
+            });
+
+            rectangle.addEventListener('mouseout', () => {
+                descriptionBox.style.opacity = '0';
+                descriptionBox.style.transform = 'translateY(-10px)';
+            });
+        });
+    </script>
+</body>
+</html>
