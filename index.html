@@ -1,32 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Rectangles with Descriptions</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="description-box" id="descriptionBox"></div>
-    <div class="container">
-        <div class="rectangle" data-description="Description for number 1">1</div>
-        <div class="rectangle" data-description="Description for number 2">2</div>
-        <div class="rectangle" data-description="Description for number 3">3</div>
-        <div class="rectangle" data-description="Description for number 4">4</div>
-        <div class="rectangle" data-description="Description for number 5">5</div>
-    </div>
-    <div class="link">
-        https://www.youtube.com/watch?v=12345
-    </div>
+    <div class="parallax"></div>
+
+        <div class="description-box" id="descriptionBox"></div>
+        <div class="container">
+            <div class="rectangle" data-description="No one can replace a mom. Go to her and tell her 'Te amo mama'">1
+            </div>
+            <div class="rectangle"
+                data-description="Your brother takes a lot of attention but he has your back. Text him a joke to make him laugh">
+                2</div>
+            <div class="rectangle"
+                data-description="How many leafs has a tree ? Don't forget your sundress if you go outside">3</div>
+            <div class="rectangle" data-description="This one is easy : 3 x YEARS_TOGETHER + DAYS_TOGETHER">4</div>
+            <div class="rectangle" data-description="
+            1. Take the minutes of the exact time right now \n
+            2. Double the number. \n
+            3. Add 9 with result. \n
+            4. Subtract 3 with the result. \n
+            5. Divide the result by 2. \n
+            6. Subtract the number with the minutes you started with">5</div>
+        </div>
+        <div class="link">
+            https://www.youtube.com/watch?v=12345
+        </div>
+
+
+    <!-- <div class="overlay">
+        <button id="startButton">Are you ready petit explorateur ?</button>
+    </div> -->
 
     <script>
+        window.addEventListener('mousemove', function (e) {
+            let moveX = (e.clientX / window.innerWidth - 0.5) * 30; // Adjust the multiplier (30) for the intensity of the effect
+            let moveY = (e.clientY / window.innerHeight - 0.5) * 30; // Adjust the multiplier (30) for the intensity of the effect
+            document.querySelector('.parallax').style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+        });
+
         const rectangles = document.querySelectorAll('.rectangle');
         const descriptionBox = document.getElementById('descriptionBox');
+        // const startButton = document.getElementById('startButton');
+        // const content = document.querySelector('.content');
+        // const overlay = document.querySelector('.overlay');
+
+        // document.getElementsByClassName('hidden')[0].style.visibility = 'hidden'
+        // startButton.addEventListener('click', () => {
+        //     overlay.style.display = 'none';
+        //     document.getElementsByClassName('hidden')[0].style.visibility = 'visible'
+
+        // });
 
         rectangles.forEach(rectangle => {
             rectangle.addEventListener('mouseover', (event) => {
-                const description = event.target.getAttribute('data-description');
-                descriptionBox.textContent = description;
+                const description = event.target.getAttribute('data-description').replace(/\\n/g, '<br>');
+                descriptionBox.innerHTML = description;
                 descriptionBox.style.opacity = '1';
                 descriptionBox.style.transform = 'translateY(0)';
             });
@@ -38,4 +73,5 @@
         });
     </script>
 </body>
+
 </html>
